@@ -57,7 +57,7 @@ net.restore(cfg.model_weight)
 # # Run segmentation on single image
 
 # %%
-im1 = cv2.imread('./data/input/cityscapes1.png')
+im1 = cv2.imread('/home/phil/workspace/code/ENet-Segmentation/data/Rec20190222164035/FrontCamera/594.png')
 
 if im1.shape != cfg.INFER_SIZE:
     im1 = cv2.resize(im1, (cfg.INFER_SIZE[1], cfg.INFER_SIZE[0]))
@@ -72,19 +72,22 @@ plt.imshow(vis_im1)
 plt.show()
 
 
-# %%
-im2 = cv2.imread('./data/input/cityscapes2.png')
-results2 = net.predict(im2)
+# # %%
+# im2 = cv2.imread('/home/phil/workspace/code/ENet-Segmentation/data/Rec20190222164035/FrontCamera/594.png')
+# if im2.shape != cfg.INFER_SIZE:
+#     im2 = cv2.resize(im2, (cfg.INFER_SIZE[1], cfg.INFER_SIZE[0]))
 
-im2 = cv2.cvtColor(im2, cv2.COLOR_BGR2RGB)
-overlap_results2 = 0.5 * im2 + 0.5 * results2[0]
+# results2 = net.predict(im2)
 
-vis_im2 = np.concatenate(
-    [im2/255.0, results2[0]/255.0, overlap_results2/255.0], axis=1)
+# im2 = cv2.cvtColor(im2, cv2.COLOR_BGR2RGB)
+# overlap_results2 = 0.5 * im2 + 0.5 * results2[0]
 
-plt.figure(figsize=(20, 15))
-plt.imshow(vis_im2)
-plt.show()
+# vis_im2 = np.concatenate(
+#     [im2/255.0, results2[0]/255.0, overlap_results2/255.0], axis=1)
+
+# plt.figure(figsize=(20, 15))
+# plt.imshow(vis_im2)
+# plt.show()
 
 # %% [markdown]
 # # Test inference speed
